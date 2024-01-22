@@ -1,6 +1,7 @@
 class World {
     canvas;
     ctx;
+    keyboard;
     character = new Character("../imgs/character/walk/walk1.png");
     enemies = [
         new Enemy('imgs/enemies/skeleton/skeleton_walk/00_Walk.png'),
@@ -19,9 +20,10 @@ class World {
     ];
 
 
-    constructor(canvas) {
+    constructor(canvas, keyboard) {
         this.canvas = canvas;
         this.giveCanvasHeightAndWidth();
+        this.keyboard = keyboard;
         this.draw();
         
     }
