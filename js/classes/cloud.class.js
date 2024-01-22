@@ -1,5 +1,5 @@
 class Cloud extends BackgroundObject{
-    speed = 0.1;
+    speed = 0.015;
     
     constructor(imgPath, x, width, height) {
         super(imgPath, width, height)
