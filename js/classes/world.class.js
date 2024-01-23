@@ -61,17 +61,25 @@ class World {
     count = 0;
     addToMap(object) {
         if (object.isOtherDirection) {
-            this.ctx.save();
-            this.ctx.translate(object.width, 0);
-            this.ctx.scale(-1, 1);
-            object.x = object.x * -1;
+            this.mirrorCtx(object);
         }
         this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
         if (object.isOtherDirection) {
-            object.x = object.x * -1;
-            this.ctx.restore();
+            this.restoreMirroredCtx(object);
         }
 
+    }
+
+    mirrorCtx(object) {
+        this.ctx.save();
+        this.ctx.translate(object.width, 0);
+        this.ctx.scale(-1, 1);
+        object.x = object.x * -1;
+    }
+
+    restoreMirroredCtx(object) {
+        object.x = object.x * -1;
+        this.ctx.restore();
     }
 
     addArrayToMap(array) {

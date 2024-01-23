@@ -30,8 +30,8 @@ class Character extends MoveableObject {
     }
 
     animate() {
-        setInterval(() => { //for KEY_D
-            if (this.world.keyboard.KEY_D == true) {
+        setInterval(() => { //for KEY_D and KEY_A
+            if (this.world.keyboard.KEY_D == true || this.world.keyboard.KEY_A == true) {
                 let i = (this.currentImage) % this.RUN_PATH.length;
                 this.img = this.imgCache[this.RUN_PATH[i]];
                 this.currentImage++;
@@ -39,14 +39,25 @@ class Character extends MoveableObject {
                 this.letCharacterStay();
             }
 
+            if(this.world.keyboard.KEY_A == true) { //for KEY_A
+                this.isOtherDirection = true;
+            } else {
+                this.isOtherDirection = false;
+            }
         }, 1000 / 8);
 
-        setInterval(() => {
+        setInterval(() => { // for KEY_D
             if(this.world.keyboard.KEY_D == true) {
                 this.x += this.speed
             }
         }, 1000/120);
 
+
+        setInterval(() => { // for KEY_A
+            if(this.world.keyboard.KEY_A == true) {
+                this.x -= this.speed
+            }
+        }, 1000/120);
         
     }
 
