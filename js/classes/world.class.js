@@ -2,6 +2,7 @@ class World {
     canvas;
     ctx;
     keyboard;
+    camera_x;
     character = new Character("../imgs/character/walk/walk1.png", this);
     enemies = [
         new Enemy('imgs/enemies/skeleton/skeleton_walk/00_Walk.png'),
@@ -9,14 +10,40 @@ class World {
         new Enemy('imgs/enemies/skeleton/skeleton_walk/00_Walk.png')
     ];
     backgroundObjects = [
-        new BackgroundObject('imgs/backgroundItems/bg1.png', 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg2.png', 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg3.png', 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg4.png', 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg5.png', 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg1.png', 0, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg2.png', 0, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg3.png', 0, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg4.png', 0, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg5.png', 0, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg7.png', 0, 720, 480),
         new Cloud('imgs/backgroundItems/bg6.png', 0, 720, 480),
+
+        new BackgroundObject('imgs/backgroundItems/bg1.png', 720, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg2.png', 720, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg3.png', 720, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg4.png', 720, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg5.png', 720, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg7.png', 720, 720, 480),
         new Cloud('imgs/backgroundItems/bg6.png', 720, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg7.png', 720, 480),
+
+        new BackgroundObject('imgs/backgroundItems/bg1.png', 720*2, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg2.png', 720*2, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg3.png', 720*2, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg4.png', 720*2, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg5.png', 720*2, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg7.png', 720*2, 720, 480),
+        new Cloud('imgs/backgroundItems/bg6.png', 720*2, 720, 480),
+
+        new BackgroundObject('imgs/backgroundItems/bg1.png', 720*3, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg2.png', 720*3, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg3.png', 720*3, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg4.png', 720*3, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg5.png', 720*3, 720, 480),
+        new BackgroundObject('imgs/backgroundItems/bg7.png', 720*3, 720, 480),
+        new Cloud('imgs/backgroundItems/bg6.png', 720*3, 720, 480),
+
+
+        new Cloud('imgs/backgroundItems/bg6.png', 720*4, 720, 480),
     ];
 
 
@@ -43,10 +70,16 @@ class World {
         //clear
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+        //camera
+        this.ctx.translate(this.camera_x, 0);
+
         //add objects to map
         this.addArrayToMap(this.backgroundObjects);
         this.addToMap(this.character);
         this.addArrayToMap(this.enemies);
+
+        //camera
+        this.ctx.translate(-this.camera_x, 0);
 
         //repeat itself with requestAnimationFrame. 
         // requestAnimationFrame(), is a function to call the function within, over and over, adjustet to the GU stats.
