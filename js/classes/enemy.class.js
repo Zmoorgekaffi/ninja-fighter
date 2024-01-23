@@ -3,8 +3,9 @@ class Enemy extends MoveableObject {
     y = 230 + Math.random() * 30;
     width = 112;
     height = 120;
-
+    speed = 0.15 + Math.random() * 0.08;
     currentImage = 0;
+    isOtherDirection = true;
 
     WALK_PATH = [
         'imgs/enemies/skeleton/skeleton_walk/00_Walk.png',
@@ -18,15 +19,23 @@ class Enemy extends MoveableObject {
     ];
 
     constructor(imgPath) {
-        super(imgPath);    
+        super(imgPath);
         this.loadImgsToImgCache(this.WALK_PATH);
         this.animate();
     }
 
     animate() {
         setInterval(() => {
-            let i = (this.currentImage += 1) % this.WALK_PATH.length;
-            this.img = this.imgCache[this.WALK_PATH[i]];
-        },1000/6.7);
+            if (Math.round(this.x) > 2) {
+                let i = (this.currentImage += 1) % this.WALK_PATH.length;
+                this.img = this.imgCache[this.WALK_PATH[i]];
+            }
+        }, 1000 / 6.5)
+
+        setInterval(() => {
+            if (Math.round(this.x) > 2) {
+                this.x -= this.speed;
+            }
+        }, 1000 / 60);
     }
 }

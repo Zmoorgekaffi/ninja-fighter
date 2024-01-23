@@ -3,6 +3,7 @@ class MoveableObject {
     y = 0;
     img = new Image();
     imgCache = [];
+    isOtherDirection = false;
 
     constructor(imgPath) {
         this.img.src = imgPath;
