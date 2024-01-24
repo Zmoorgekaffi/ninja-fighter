@@ -4,6 +4,13 @@ class World {
     keyboard;
     camera_x;
     character = new Character("../imgs/character/walk/walk1.png", this);
+
+//lvl
+    character_levelStart_X = 100;
+    character_levelEnd_X = 2254;
+    character_levelStart_Y = 200;
+    character_levelEnd_Y = 268;
+
     enemies = [
         new Enemy('imgs/enemies/skeleton/skeleton_walk/00_Walk.png'),
         new Enemy('imgs/enemies/skeleton/skeleton_walk/00_Walk.png'),
@@ -45,7 +52,7 @@ class World {
 
         new Cloud('imgs/backgroundItems/bg6.png', 720*4, 720, 480),
     ];
-
+//lvlend
 
     constructor(canvas, keyboard) {
         this.canvas = canvas;
@@ -96,7 +103,9 @@ class World {
         if (object.isOtherDirection) {
             this.mirrorCtx(object);
         }
+
         this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
+        
         if (object.isOtherDirection) {
             this.restoreMirroredCtx(object);
         }

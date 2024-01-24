@@ -37,29 +37,25 @@ class Character extends MoveableObject {
                 this.letCharacterStay();
             }
 
-            if(this.world.keyboard.KEY_A == true) { //for KEY_A
-                this.isOtherDirection = true;
-            } else {
+            if(this.world.keyboard.KEY_D == true && this.world.keyboard.KEY_A == true) {//if a & d is pressed => isOtherDirection = false && letCharacterStay
                 this.isOtherDirection = false;
-            }
-
-            if(this.world.keyboard.KEY_D == true && this.world.keyboard.KEY_A == true) {
                 this.letCharacterStay();
-                this.isOtherDirection = false;
             }
         }, 1000 / 8);
 
         setInterval(() => {
-            if(this.world.keyboard.KEY_D == true) { // for KEY_D
+            if(this.world.keyboard.KEY_D == true && this.x < this.world.character_levelEnd_X) { // for KEY_D
+                this.isOtherDirection = false;
                 this.x += this.speed
             }
 
-            if(this.world.keyboard.KEY_A == true) { // for KEY_A
+            if(this.world.keyboard.KEY_A == true && this.x > this.world.character_levelStart_X) { // for KEY_A
+                this.isOtherDirection = true;
                 this.x -= this.speed
             }
 
             this.world.camera_x = -this.x + 100;
-        }, 1000/120);
+        }, 1000/130); //frames animation
     }
 
     playRunAnimation() {
