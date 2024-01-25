@@ -6,6 +6,7 @@ class Enemy extends MoveableObject {
     speed = 0.15 + Math.random() * 0.08;
     currentImage = 0;
     isOtherDirection = true;
+    sound_walk = new Audio('/sounds/skeleton/walk/skeleton_walk.wav');
 
     WALK_PATH = [
         'imgs/enemies/skeleton/skeleton_walk/00_Walk.png',
@@ -32,10 +33,17 @@ class Enemy extends MoveableObject {
             }
         }, 1000 / 6.5)
 
-        setInterval(() => {
-            if (Math.round(this.x) > 2) {
-                this.x -= this.speed;
-            }
-        }, 1000 / 60);
+        setTimeout(() => {
+            setInterval(() => {
+                if (Math.round(this.x) > 2) {
+                    this.x -= this.speed;
+                    this.sound_walk.play()
+                    this.sound_walk.volume = 0.1 + Math.random()*0.2;
+                } else {
+                    this.sound_walk.pause();
+                }
+            }, 1000 / 60);
+        }, 0 + (Math.random()*250 + Math.random()*250));
+
     }
 }

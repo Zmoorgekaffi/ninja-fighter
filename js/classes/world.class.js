@@ -4,62 +4,14 @@ class World {
     keyboard;
     camera_x;
     character = new Character("../imgs/character/walk/walk1.png", this);
-
-//lvl
-    character_levelStart_X = 100;
-    character_levelEnd_X = 2254;
-    character_levelStart_Y = 200;
-    character_levelEnd_Y = 268;
-
-    enemies = [
-        new Enemy('imgs/enemies/skeleton/skeleton_walk/00_Walk.png'),
-        new Enemy('imgs/enemies/skeleton/skeleton_walk/00_Walk.png'),
-        new Enemy('imgs/enemies/skeleton/skeleton_walk/00_Walk.png')
-    ];
-    backgroundObjects = [
-        new BackgroundObject('imgs/backgroundItems/bg1.png', 0, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg2.png', 0, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg3.png', 0, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg4.png', 0, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg5.png', 0, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg7.png', 0, 720, 480),
-        new Cloud('imgs/backgroundItems/bg6.png', 0, 720, 480),
-
-        new BackgroundObject('imgs/backgroundItems/bg1.png', 720, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg2.png', 720, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg3.png', 720, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg4.png', 720, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg5.png', 720, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg7.png', 720, 720, 480),
-        new Cloud('imgs/backgroundItems/bg6.png', 720, 720, 480),
-
-        new BackgroundObject('imgs/backgroundItems/bg1.png', 720*2, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg2.png', 720*2, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg3.png', 720*2, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg4.png', 720*2, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg5.png', 720*2, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg7.png', 720*2, 720, 480),
-        new Cloud('imgs/backgroundItems/bg6.png', 720*2, 720, 480),
-
-        new BackgroundObject('imgs/backgroundItems/bg1.png', 720*3, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg2.png', 720*3, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg3.png', 720*3, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg4.png', 720*3, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg5.png', 720*3, 720, 480),
-        new BackgroundObject('imgs/backgroundItems/bg7.png', 720*3, 720, 480),
-        new Cloud('imgs/backgroundItems/bg6.png', 720*3, 720, 480),
-
-
-        new Cloud('imgs/backgroundItems/bg6.png', 720*4, 720, 480),
-    ];
-//lvlend
+    enemies = level1.enemies;
+    backgroundObjects = level1.backgroundObjects;
 
     constructor(canvas, keyboard) {
         this.canvas = canvas;
         this.giveCanvasHeightAndWidth();
         this.keyboard = keyboard;
         this.draw();
-
     }
 
     /* preparing */

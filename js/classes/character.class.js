@@ -4,6 +4,7 @@ class Character extends MoveableObject {
     y = 225;
     width = 142;
     height = 126;
+    isOtherDirection = false;
     RUN_PATH = [
         'imgs/character/run/run1.png',
         'imgs/character/run/run2.png',
@@ -15,9 +16,9 @@ class Character extends MoveableObject {
         'imgs/character/run/run8.png',
     ]
     currentImage = 0;
-    firstImg;
-    speed = 1.67;
-    isOtherDirection = false;
+    speed = 3;
+    sound_run_whole = new Audio('sounds/character-sounds/run/character_run_whole.wav');
+    sound_run_cut =  new Audio('sounds/character-sounds/run/character_run_cut.wav');
 
 
 
@@ -30,10 +31,12 @@ class Character extends MoveableObject {
     }
 
     animate() {
-        setInterval(() => { //for KEY_D and KEY_A
+        setInterval(() => { //for KEY_D and KEY_A (animation)
             if (this.world.keyboard.KEY_D == true || this.world.keyboard.KEY_A == true) {
                 this.playRunAnimation();         
+                this.sound_run_cut.play();
             } else {
+                this.sound_run_cut.pause();
                 this.letCharacterStay();
             }
 
@@ -41,21 +44,21 @@ class Character extends MoveableObject {
                 this.isOtherDirection = false;
                 this.letCharacterStay();
             }
-        }, 1000 / 8);
+        }, 1000 / 10);
 
-        setInterval(() => {
-            if(this.world.keyboard.KEY_D == true && this.x < this.world.character_levelEnd_X) { // for KEY_D
+        setInterval(() => { // (actual walking)
+            if(this.world.keyboard.KEY_D == true && this.x < level1.character_levelEnd_X) { // for KEY_D
                 this.isOtherDirection = false;
                 this.x += this.speed
             }
 
-            if(this.world.keyboard.KEY_A == true && this.x > this.world.character_levelStart_X) { // for KEY_A
+            if(this.world.keyboard.KEY_A == true && this.x > level1.character_levelStart_X) { // for KEY_A
                 this.isOtherDirection = true;
                 this.x -= this.speed
             }
 
             this.world.camera_x = -this.x + 100;
-        }, 1000/130); //frames animation
+        }, 1000/60); //frames animation
     }
 
     playRunAnimation() {
