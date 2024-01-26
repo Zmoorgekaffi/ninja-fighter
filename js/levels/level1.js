@@ -1,8 +1,9 @@
 const level1 = new Level(
     [ //enemies
-        new Enemy('imgs/enemies/skeleton/skeleton_walk/00_Walk.png'),
-        new Enemy('imgs/enemies/skeleton/skeleton_walk/00_Walk.png'),
-        new Enemy('imgs/enemies/skeleton/skeleton_walk/00_Walk.png')
+        new Skeleton_enemy('imgs/enemies/skeleton/skeleton_walk/00_Walk.png'),
+        new Skeleton_enemy('imgs/enemies/skeleton/skeleton_walk/00_Walk.png'),
+        new Skeleton_enemy('imgs/enemies/skeleton/skeleton_walk/00_Walk.png'),
+        new Yokai_Endboss('imgs/enemies/yokai_endboss/yokai_run/Run_00.png')
     ],
     [
         new BackgroundObject('imgs/backgroundItems/bg1.png', 0, 720, 480),

@@ -17,7 +17,6 @@ class Character extends MoveableObject {
     ]
     currentImage = 0;
     speed = 3;
-    sound_run_whole = new Audio('sounds/character-sounds/run/character_run_whole.wav');
     sound_run_cut =  new Audio('sounds/character-sounds/run/character_run_cut.wav');
 
 
