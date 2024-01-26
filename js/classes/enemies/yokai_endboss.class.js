@@ -1,7 +1,9 @@
 class Yokai_Endboss extends Enemy {
     volume = 0.6;
     x = 500;
-    y = 230;
+    y = 155;
+    height = 200;
+    width = 150;
     speed = 1; 
     walk_animation = [
         'imgs/enemies/yokai_endboss/yokai_run/Run_00.png',
