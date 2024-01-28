@@ -5,6 +5,9 @@ class Character extends MoveableObject {
     width = 142;
     height = 126;
     isOtherDirection = false;
+    currentImage = 0;
+    speed = 3;
+    sound_run_cut =  new Audio('sounds/character-sounds/run/character_run_cut.wav');
     RUN_PATH = [
         'imgs/character/run/run1.png',
         'imgs/character/run/run2.png',
@@ -15,11 +18,15 @@ class Character extends MoveableObject {
         'imgs/character/run/run7.png',
         'imgs/character/run/run8.png',
     ]
-    currentImage = 0;
-    speed = 3;
-    sound_run_cut =  new Audio('sounds/character-sounds/run/character_run_cut.wav');
 
-
+    IDLE_PATH = [
+        'imgs/character/idle/00_Idle.png',
+        'imgs/character/idle/01_Idle.png',
+        'imgs/character/idle/02_Idle.png',
+        'imgs/character/idle/03_Idle.png',
+        'imgs/character/idle/04_Idle.png',
+        'imgs/character/idle/05_Idle.png',
+    ]
 
     constructor(imgPath, world) {
         super(imgPath);
@@ -30,18 +37,18 @@ class Character extends MoveableObject {
     }
 
     animate() {
-        setInterval(() => { //for KEY_D and KEY_A (animation)
+        setInterval(() => { //for KEY_D and KEY_A (walk animation)
             if (this.world.keyboard.KEY_D == true || this.world.keyboard.KEY_A == true) {
-                this.playRunAnimation();         
+                this.playAnimation(this.RUN_PATH);         
                 this.sound_run_cut.play();
             } else {
                 this.sound_run_cut.pause();
-                this.letCharacterStay();
+                this.playAnimation(this.IDLE_PATH);
             }
 
             if(this.world.keyboard.KEY_D == true && this.world.keyboard.KEY_A == true) {//if a & d is pressed => isOtherDirection = false && letCharacterStay
                 this.isOtherDirection = false;
-                this.letCharacterStay();
+                this.playAnimation(this.IDLE_PATH);
             }
         }, 1000 / 10);
 
@@ -60,9 +67,10 @@ class Character extends MoveableObject {
         }, 1000/60); //frames animation
     }
 
-    playRunAnimation() {
-        let i = (this.currentImage) % this.RUN_PATH.length;
-        this.img = this.imgCache[this.RUN_PATH[i]];
+    playAnimation(animationArray) {
+        this.loadImgsToImgCache(animationArray);
+        let i = (this.currentImage) % animationArray.length;
+        this.img = this.imgCache[animationArray[i]];
         this.currentImage++;
     }
 
