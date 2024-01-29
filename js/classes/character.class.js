@@ -38,7 +38,7 @@ class Character extends MoveableObject {
 
     animate() {
         setInterval(() => { //for KEY_D and KEY_A (walk animation)
-            if (this.world.keyboard.KEY_D == true || this.world.keyboard.KEY_A == true) {
+            if (this.world.keyboard.KEY_D == true || this.world.keyboard.KEY_A == true || this.world.keyboard.KEY_W == true || this.world.keyboard.KEY_S == true) {
                 this.playAnimation(this.RUN_PATH);         
                 this.sound_run_cut.play();
             } else {
@@ -61,6 +61,15 @@ class Character extends MoveableObject {
             if(this.world.keyboard.KEY_A == true && this.x > level1.character_levelStart_X) { // for KEY_A
                 this.isOtherDirection = true;
                 this.x -= this.speed
+            }
+
+            if(this.world.keyboard.KEY_S == true && this.y < level1.character_levelEnd_Y) { // for KEY_S
+                this.y += this.speed
+            }
+
+            if(this.world.keyboard.KEY_W == true && this.y > level1.character_levelStart_Y) { // for KEY_W
+                
+                this.y -= this.speed
             }
 
             this.world.camera_x = -this.x + 100;

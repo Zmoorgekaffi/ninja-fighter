@@ -10,9 +10,7 @@ class Keyboard {
             if (event.keyCode == 87) {
                 this.KEY_W = true;
 
-                this.KEY_A = false;
                 this.KEY_S = false;
-                this.KEY_D = false;
             }
 
             if (event.keyCode == 65) {
@@ -27,8 +25,6 @@ class Keyboard {
                 this.KEY_S = true;
 
                 this.KEY_W = false;
-                this.KEY_A = false;
-                this.KEY_D = false;
             }
 
             if (event.keyCode == 68) {
