@@ -1,5 +1,6 @@
 class Character extends MoveableObject {
     world;
+    characterLandOnGround;
     x = 100;
     y = 225;
     width = 142;
@@ -31,7 +32,6 @@ class Character extends MoveableObject {
     constructor(imgPath, world) {
         super(imgPath);
         this.world = world;
-        this.loadImgsToImgCache(this.RUN_PATH);
         this.animate();
         this.firstImg = imgPath;
     }
@@ -88,4 +88,14 @@ class Character extends MoveableObject {
         functionImg.src = this.firstImg;
         this.img = functionImg;
     }
+
+    setCharacterLandingOnTheGround_Y() {
+        this.characterLandOnGround = level1.character_levelStart_Y + (Math.random() * level1.character_level_Y_difference);
+        if (this.characterLandOnGround < level1.character_levelStart_Y) {
+            this.y = 230;
+        } else {
+            this.y = this.characterLandOnGround;
+        }
+        console.log(this.characterLandOnGround);
+    } 
 }
