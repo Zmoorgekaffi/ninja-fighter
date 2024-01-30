@@ -5,7 +5,7 @@ class Yokai_Endboss extends Enemy {
     height = 200;
     width = 150;
     speed = 1; 
-    walk_animation = [
+    WALK_PATH = [
         'imgs/enemies/yokai_endboss/yokai_run/Run_00.png',
         'imgs/enemies/yokai_endboss/yokai_run/Run_01.png',
         'imgs/enemies/yokai_endboss/yokai_run/Run_02.png',
@@ -19,7 +19,28 @@ class Yokai_Endboss extends Enemy {
 
     constructor(imgPath) {
         super(imgPath);
-        this.loadImgsToImgCache(this.walk_animation);
+        this.loadImgsToImgCache(this.WALK_PATH);
         this.animate();
     }
+
+    animate() {
+        setInterval(() => { // walk animation
+            if (Math.round(this.x) > level1.character_levelStart_X) {
+                this.playAnimation(this.WALK_PATH);
+            }
+        }, 1000 / 6.5)
+
+        setTimeout(() => { //actual walking
+            setInterval(() => {
+                if (Math.round(this.x) > level1.character_levelStart_X) {
+                    this.moveLeft();
+                    this.walk_sound.play()
+                    this.walk_sound.volume = this.volume;
+                } else {
+                    this.walk_sound.pause();
+                }
+            }, 1000 / 60);
+        }, 0 + (Math.random()*250 + Math.random()*250)); // this settimeout prevents enemies from walking at the same time
+    }
+    
 }

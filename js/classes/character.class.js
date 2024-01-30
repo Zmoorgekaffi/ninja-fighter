@@ -46,7 +46,7 @@ class Character extends MoveableObject {
         this.world = world;
         this.animate();
         this.firstImg = imgPath;
-        this.applyGravity()
+        this.applyGravity();
     }
 
     animate() {
@@ -62,7 +62,7 @@ class Character extends MoveableObject {
             if(this.y < level1.character_levelStart_Y) { // (Jump Animation)
                 this.playAnimation(this.JUMP_PATH);
             }
-        }, 1000 / 10);
+        }, 1000 / 8);
 
         setInterval(() => { // (actual walking)
             if(this.world.keyboard.KEY_D == true && this.x < level1.character_levelEnd_X) { // for KEY_D
