@@ -17,7 +17,7 @@ class Character extends MoveableObject {
         'imgs/character/run/run6.png',
         'imgs/character/run/run7.png',
         'imgs/character/run/run8.png',
-    ]
+    ];
 
     IDLE_PATH = [
         'imgs/character/idle/00_Idle.png',
@@ -26,7 +26,7 @@ class Character extends MoveableObject {
         'imgs/character/idle/03_Idle.png',
         'imgs/character/idle/04_Idle.png',
         'imgs/character/idle/05_Idle.png',
-    ]
+    ];
 
     JUMP_PATH = [
         'imgs/character/Jump/00_Jump.png',
