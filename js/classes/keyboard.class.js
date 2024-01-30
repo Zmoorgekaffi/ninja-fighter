@@ -61,7 +61,7 @@ class Keyboard {
             }
 
             if (event.key == " ") {
-                this.KEY_SPACE = true;
+                this.KEY_SPACE = false;
             }
         });
     }

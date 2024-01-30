@@ -1,8 +1,7 @@
 class Character extends MoveableObject {
     world;
-    characterLandOnGround;
     x = 100;
-    y = 225;
+    y = 200;
     width = 142;
     height = 126;
     isOtherDirection = false;
@@ -29,11 +28,25 @@ class Character extends MoveableObject {
         'imgs/character/idle/05_Idle.png',
     ]
 
+    JUMP_PATH = [
+        'imgs/character/Jump/00_Jump.png',
+        'imgs/character/Jump/01_Jump.png',
+        'imgs/character/Jump/02_Jump.png',
+        'imgs/character/Jump/03_Jump.png',
+        'imgs/character/Jump/04_Jump.png',
+        'imgs/character/Jump/05_Jump.png',
+        'imgs/character/Jump/06_Jump.png',
+        'imgs/character/Jump/07_Jump.png',
+        'imgs/character/Jump/08_Jump.png',
+        'imgs/character/Jump/09_Jump.png',
+    ];
+
     constructor(imgPath, world) {
         super(imgPath);
         this.world = world;
         this.animate();
         this.firstImg = imgPath;
+        this.applyGravity()
     }
 
     animate() {
@@ -49,6 +62,11 @@ class Character extends MoveableObject {
             if(this.world.keyboard.KEY_D == true && this.world.keyboard.KEY_A == true) {//if a & d is pressed => isOtherDirection = false && letCharacterStay
                 this.isOtherDirection = false;
                 this.playAnimation(this.IDLE_PATH);
+            }
+
+            if(this.y < level1.character_levelStart_Y) {
+                this.loadImgsToImgCache(this.JUMP_PATH);
+                this.playAnimation(this.JUMP_PATH);
             }
         }, 1000 / 10);
 
@@ -70,6 +88,15 @@ class Character extends MoveableObject {
             if(this.world.keyboard.KEY_W == true && this.y > level1.character_levelStart_Y) { // for KEY_W
                 
                 this.y -= this.speed
+                if(this.y < level1.character_levelStart_Y){
+                    this.y = level1.character_levelStart_Y;
+                }
+            }
+
+            
+            if(this.world.keyboard.KEY_SPACE == true && this.y > (level1.character_levelStart_Y - 0.1)) { // for KEY_SPACE
+                this.isInAir = true;
+                this.speedY = 15;
             }
 
             this.world.camera_x = -this.x + 100;
@@ -82,20 +109,4 @@ class Character extends MoveableObject {
         this.img = this.imgCache[animationArray[i]];
         this.currentImage++;
     }
-
-    letCharacterStay() {
-        let functionImg = new Image();
-        functionImg.src = this.firstImg;
-        this.img = functionImg;
-    }
-
-    setCharacterLandingOnTheGround_Y() {
-        this.characterLandOnGround = level1.character_levelStart_Y + (Math.random() * level1.character_level_Y_difference);
-        if (this.characterLandOnGround < level1.character_levelStart_Y) {
-            this.y = 230;
-        } else {
-            this.y = this.characterLandOnGround;
-        }
-        console.log(this.characterLandOnGround);
-    } 
 }
