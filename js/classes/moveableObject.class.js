@@ -80,4 +80,19 @@ class MoveableObject {
         this.isInAir = true;
         this.speedY = 15;
     }
+
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+        
+        this.drawColisionBox(ctx, this.x + 40, this.y +40, this.width -80, this.height -40, 'blue')
+    }
+
+    drawColisionBox(ctx, x, y, width, height, colour) {
+        if(this instanceof Enemy || this instanceof Character) {
+            ctx.beginPath();
+            ctx.strokeStyle = colour;
+            ctx.rect(x, y, width, height);
+            ctx.stroke();
+        }
+    }
 }   

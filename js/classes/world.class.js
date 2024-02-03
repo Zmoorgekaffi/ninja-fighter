@@ -37,6 +37,9 @@ class World {
         this.addToMap(this.character);
         this.addArrayToMap(this.enemies);
 
+        //collision boxes
+    
+
         //camera
         this.ctx.translate(-this.camera_x, 0);
 
@@ -56,8 +59,8 @@ class World {
             this.mirrorCtx(object);
         }
 
-        this.ctx.drawImage(object.img, object.x, object.y, object.width, object.height);
-        
+        object.draw(this.ctx);
+
         if (object.isOtherDirection) {
             this.restoreMirroredCtx(object);
         }
